@@ -4,6 +4,9 @@
     #define PARTICLE_H
 
 typedef struct ET_LE_MOUTON_MANGEA_LE_LOUP__NE_FAITES_PAS_CONFIANCE_AU_MOUTON_DE_TCHERNOBYL {
+    sfSprite *sprite;
+    sfTexture *texture;
+    sfVector2f pos;
 } particle_t;
 
 int create_particle(game_t *game);
