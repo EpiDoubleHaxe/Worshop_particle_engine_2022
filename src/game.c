@@ -19,19 +19,17 @@ int destroy_game(game_t *game)
 {
     sfRenderWindow_destroy(game->window);
     sfClock_destroy(game->clock);
-    if (destroy_particles(game->particles) != 0)
-        return 84;
     return 0;
 }
 
 int update_game(game_t *game)
 {
     if (sfClock_getElapsedTime(game->clock).microseconds > 16000) {
-        if(create_particle(game) != 0)
-            return 84;
         if (update_particle(game) != 0)
             return 84;
         if (draw_particle(game) != 0)
+            return 84;
+        if (destroy_particles(game) != 0)
             return 84;
         sfClock_restart(game->clock);
         sfRenderWindow_display(game->window);
@@ -45,6 +43,9 @@ int gameloop(void)
     sfEvent event;
 
     srand(time(NULL));
+    for (int i = 0; i < 10; ++i) {
+        create_particle(game);
+    }
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfBlack);
         while (sfRenderWindow_pollEvent(game->window, &event)) {
