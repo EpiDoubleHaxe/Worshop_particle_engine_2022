@@ -1,6 +1,8 @@
 #include "my.h"
 #include "game.h"
 #include "particle.h"
+#include <stdlib.h>
+#include "time.h"
 
 game_t *init_game()
 {
@@ -42,6 +44,7 @@ int gameloop(void)
     game_t *game = init_game();
     sfEvent event;
 
+    srand(time(NULL));
     while (sfRenderWindow_isOpen(game->window)) {
         sfRenderWindow_clear(game->window, sfBlack);
         while (sfRenderWindow_pollEvent(game->window, &event)) {

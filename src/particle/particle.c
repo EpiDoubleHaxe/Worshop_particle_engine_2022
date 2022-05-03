@@ -30,7 +30,8 @@ int update_particle(game_t *game)
 
     while (index != NULL) {
         particle = index->data;
-        particle->pos.x++;
+        particle->pos.x += (rand() % 3) - 2;
+        particle->pos.y += (rand() % 3) - 2;
         sfSprite_setPosition(particle->sprite, particle->pos);
         index = index->next;
     }
